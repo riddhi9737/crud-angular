@@ -1,0 +1,96 @@
+<form class="example-form" [formGroup]="productform" (ngSubmit)="SaveProduct()">
+    <div class="example-full-width">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="Name" formControlName="name">
+        </mat-form-field>
+        <div class="error-message"
+            *ngIf="productform.controls['name'].invalid && (productform.controls['name'].dirty || productform.controls['name'].touched)"
+            class="alert">
+            <div class="error-message" *ngIf="productform.controls['name']?.errors?.['required']">
+                Please enter name
+            </div>
+        </div>
+    </div>
+    <div class="example-full-width">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>SKU</mat-label>
+            <input matInput placeholder="SKU" formControlName="sku">
+        </mat-form-field>
+        <div *ngIf="productform.controls['sku'].invalid && (productform.controls['sku'].dirty || productform.controls['sku'].touched)"
+            class="alert">
+            <div class="error-message" *ngIf="productform.controls['sku']?.errors?.['required']">
+                Please enter sku
+            </div>
+        </div>
+    </div>
+    <div class="example-full-width">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Color</mat-label>
+            <input matInput placeholder="Color" formControlName="color">
+        </mat-form-field>
+        <div *ngIf="productform.controls['color'].invalid && (productform.controls['color'].dirty || productform.controls['color'].touched)"
+            class="alert">
+            <div class="error-message" *ngIf="productform.controls['color']?.errors?.['required']">
+                Please enter color
+            </div>
+            <div class="error-message" *ngIf="productform.controls['color']?.errors?.['maxlength']">
+                Please enter character length less then 56
+            </div>
+        </div>
+    </div>
+    <div class="example-full-width">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Type</mat-label>
+            <input matInput placeholder="Type" formControlName="type">
+        </mat-form-field>
+        <div *ngIf="productform.controls['type'].invalid && (productform.controls['type'].dirty || productform.controls['type'].touched)"
+            class="alert">
+            <div class="error-message" *ngIf="productform.controls['type']?.errors?.['required']">
+                Please enter type
+            </div>
+            <div class="error-message" *ngIf="productform.controls['type']?.errors?.['maxlength']">
+                Please enter character length less then 56
+            </div>
+        </div>
+    </div>
+    <div class="example-full-width">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Cost</mat-label>
+            <input matInput placeholder="Price" type="number" formControlName="price">
+        </mat-form-field>
+        <div *ngIf="productform.controls['price'].invalid && (productform.controls['price'].dirty || productform.controls['price'].touched)"
+            class="alert">
+            <div class="error-message" *ngIf="productform.controls['price']?.errors?.['required']">
+                Please enter price
+            </div>
+            <div class="error-message" *ngIf="productform.controls['price']?.errors?.['min']">
+                Please enter price more then 0
+            </div>
+        </div>
+    </div>
+    <div class="example-full-width">
+
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Description</mat-label>
+            <input matInput placeholder="Description" formControlName="description">
+        </mat-form-field>
+        <div *ngIf="productform.controls['description'].invalid && (productform.controls['description'].dirty || productform.controls['description'].touched)"
+            class="alert">
+            <div class="error-message" *ngIf="productform.controls['description']?.errors?.['required']">
+                Please enter description
+            </div>
+            <div class="error-message" *ngIf="productform.controls['description']?.errors?.['maxlength']">
+                Please enter character length less then 56
+            </div>
+        </div>
+    </div>
+    <div class="example-button-row" style="padding: 1%">
+        <button mat-raised-button color="primary">Save</button> |
+        <a mat-raised-button color="accent" (click)="redirecttolist()">Cancel</a>
+    </div>
+
+</form>

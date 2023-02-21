@@ -1,0 +1,50 @@
+<h3>Product Screen</h3>
+<div class="mat-elevation-z8">
+    <div>
+        <a mat-raised-button color="primary" routerLink="/product/create" style="margin: 2%">Create New</a>
+    </div>
+    <mat-form-field>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Filter">
+    </mat-form-field>
+
+    <table class="mat-elevation-z8" mat-table matSort [dataSource]="finaldata">
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> price</th>
+            <td mat-cell *matCellDef="let element">{{element.price | currency }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="color">
+            <th mat-header-cell *matHeaderCellDef> Color</th>
+            <td mat-cell *matCellDef="let element">{{element.color }}</td>
+        </ng-container>
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef> Type</th>
+            <td mat-cell *matCellDef="let element">{{element.type }}</td>
+        </ng-container>
+        <ng-container matColumnDef="sku">
+            <th mat-header-cell *matHeaderCellDef> Sku</th>
+            <td mat-cell *matCellDef="let element">{{element.sku }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef style="width:15%"> Action</th>
+            <td mat-cell *matCellDef="let element">
+                <a mat-raised-button color="primary" (click)="EditProduct(element.id)">Edit</a> |
+                <a mat-raised-button color="accent" (click)="RemoveProduct(element.id)">Delete</a>
+            </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayColums"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayColums;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+</div>
+<div class="mat-elevation-z8">
+    <router-outlet></router-outlet>
+</div>
